@@ -1,2 +1,2 @@
-# learning-middleman
+# Learning Middleman
 Looking to Learn Middleman? Want to rapidly create static websites? This free online book is for you

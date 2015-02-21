@@ -76,9 +76,36 @@ This directory is where you will write your HTML, CSS and JS.
 
 Inside you will see futher folders for images, javascripts, stylesheets which are all pretty self explanatory.
 
+You will also see a folder called "layouts".
+
+##### /source/layouts/
+
+Inside this file is an erb file (Embedded RuBy = erb) which defines the HTML structure your html pages are injected into.
+
+This file provides the stuff that wraps around your individually created pages like the meta information, the html tag, head tag etc. and injects every page into this layout into the area called ```yield```.
+
+As this is an erb file, your ruby and Middleman helpers are contained within the <% %> tags.
+
+Think of these as ways of injecting ruby code into the file.
+
+When you see a tag have a ```<%``` and an equals file after the percentage sign, ie ```<%= %>```, that means "turn this code into a visible entitiy, turn it into HTML or text"
+
+So, the following tag will print out the first line "I love cats" into every HTML page but not the second line:
+
+```erb
+<%= "I love cats!" %>
+<% "And slime for dinner!" %>
+```
+
+Naturally when you are printing things out into the HTML you can call more interesting things than just a string of words. You can call some powerful ruby code.
+
+> You may also be thinking "Why would I write code but not output it into my HTML?". The answer is, the non-printed erb tag sets up your page to connect to data files and the like. So, you might use the non-printing erb tag to call up a database or a bit of ruby code to loop over several times which you then print out selected outputs from that database call. Still lost? Don't worry, we'll cover this and erb later [link](link)
+
+> Link to erb section
+
 > Explanation anyway. Example of layout included:
 
-you will also see an ebedded ruby HTML page that, on using the Middleman build command, will get wrapped into its layout.
+Let's have a quick look at our layout file:
 
 ```erb
 <!doctype html>
@@ -98,6 +125,14 @@ you will also see an ebedded ruby HTML page that, on using the Middleman build c
   </body>
 </html>
 ```
+
+Here we can see some erb in action in different ways. Let's start from the bottom and make our way up.
+
+The ```<%= yield %>``` tag, as we mentioned, is the place where your invidiual page HTML files will be injected in. This saves us from having to include the head section in each page as well as the footer, navigation or other common page structures.
+
+In the body element you will see an outputted Ruby method called ```page_classes``` inside a CSS class.
+
+This is a Middleman method that is given to us for free, what it does is for each page, it locates the name of the page and then injects that name into the body class. The value of this is  that it gives us the ability to optionally style a particular page and its body class
 
 You will also see some YAML at the top of the page which provides useful information to a template, like the title page etc.
 
